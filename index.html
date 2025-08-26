@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apfelreise</title>
+
+  <!-- IconSet für ScrollPfeil -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Für wschöneres Scrollen beim Buttonklick */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Basislayout für Body */
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: linear-gradient(to bottom, #f5f2eb, #eae6dc); /* sanfter Verlauf */
+      color: #333;
+    }
+
+    /* Feste Kopfzeile mit Schatten */
+    header {
+      background-color: #fff8f0;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    /* Hauptbereich mittig auf Seite */
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    /* Bereich für Apfelbild +Slider */
+    .image-slider-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Bildgröße festgelegt, damit der Apfel immer an derselben Stelle bleibt */
+    .image-slider-wrapper img {
+      width: 577px;
+      height: 433px;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.25));
+    }
+
+    .image-slider-wrapper input[type=range] {
+      width: 577px;
+      max-width: 100%;
+    }
+
+    /* Beschriftung unter dem Slider */
+    #bildtext {
+      font-style: italic;
+      color: #555;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    /* Gemeinsames Styling für Textblöcke */
+    .text-wrapper, .wissenssektion {
+      background-color: #fffdf7;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      margin-top: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease-out;
+    }
+
+    /* Wenn eingeblendet, sichtbar und ohne Verschiebung */
+    .text-wrapper.visible, .wissenssektion.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .text-wrapper h2, .wissenssektion h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: #7a493a;
+      text-align: center;
+    }
+
+    .text-wrapper p, .wissenssektion p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    /* Button zur Wissenssektion */
+    .button {
+      margin: 2rem auto 0;
+      display: block;
+      background-color: #7a493a;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #5a3228;
+    }
+
+    /* Pfeil nach unten als dezenter ScrollIndikator */
+    .scroll-indicator {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 2rem;
+      color: #aaa;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    /* Moble Optimierung */
+    @media screen and (max-width: 768px) {
+      .image-slider-wrapper img,
+      .image-slider-wrapper input[type=range] {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Feste Überschrift -->
+  <header>
+    <h1>Apfelreise 🍎</h1>
+  </header>
+
+  <main>
+    <p class="subtitle">Zeit als Verwandlung</p>
+
+    <!-- Apfelbild + Slider -->
+    <div class="image-slider-wrapper">
+      <img id="apfelbild" src="bilder/Tag2.png" alt="Apfel Tag 2" />
+
+      <input type="range" id="slider" min="2" max="19" value="2" />
+    </div>
+
+    <p id="bildtext">Tag 2</p>
+
+    <!-- Mein Persönlicher ApfelText -->
+    <div class="text-wrapper">
+  <h2>Die Geschichte des Apfels</h2>
+  <p>
+    An Tag 1 sieht der Apfel ganz normal aus frisch, rund, gesund. So, wie man sich einen perfekten Apfel vorstellt. Aber mit der Zeit verändert er sich. Nicht auf einen Schlag, sondern langsam. Es entstehen kleine Falten, die Farbe wird dunkler, er schrumpft ein bisschen.<br><br>
+    Je älter er wird, desto mehr zeigt er, dass er nicht mehr neu ist. Aber das ist nicht unbedingt schlecht. Er wirkt irgendwie ruhiger, ehrlicher.<br><br>
+    Für mich ist das mehr als nur ein fauler Apfel. Es zeigt, wie Zeit alles verändert still und Schritt für Schritt.
+  </p>
+</div>
+
+
+    <!-- ScrollIndikator -->
+    <div class="scroll-indicator">
+      <i class="fa-solid fa-angles-down"></i>
+    </div>
+
+    <!-- Button zur Wissenssektion -->
+    <button class="button" onclick="document.getElementById('wissen').scrollIntoView({behavior: 'smooth'})">
+      Mehr erfahren
+    </button>
+
+    <!-- Wissensbereich -->
+    <div class="wissenssektion" id="wissen">
+      <h2>Wissen: Warum altert ein Apfel?</h2>
+      <p>
+        Seit dem Moment der Ernte beginnt mein Apfel langsam zu altern. Es passiert nicht plötzlich, sondern durch natürliche Prozesse wie das Reifegas Ethylen, das den inneren Abbau beschleunigt.<br><br>
+        Mit der Zeit reagiert Sauerstoff mit den Enzymen im Fruchtfleisch. Dadurch kommt es zur Oxidation. Die Schale verliert Feuchtigkeit, das Gewebe schrumpft, es entstehen feine Falten. Auch Licht, Temperatur und Luftfeuchtigkeit beeinflussen diesen Prozess.<br><br>
+        Ich wollte diesen Wandel nicht überzeichnen, sondern ehrlich und ruhig zeigen  so, wie er wirklich passiert. Mein Apfel ist ein stilles Porträt der Zeit.
+      </p>
+    </div>
+  </main>
+
+  <!-- JavaScript für Slider und ScrollAnimation -->
+  <script>
+    const slider = document.getElementById('slider');
+    const image = document.getElementById('apfelbild');
+    const text = document.getElementById('bildtext');
+
+    // Beim Verschieben des Sliders Bild + Text aktualisiern
+    slider.addEventListener('input', () => {
+      const tag = slider.value;
+      image.src = `bilder/Tag${tag}.png`;
+      image.alt = `Apfel Tag ${tag}`;
+      text.textContent = `Tag ${tag}`;
+    });
+
+    // Text-Elemente einblenden, wenn man scrollt
+    const fadeEls = document.querySelectorAll('.text-wrapper, .wissenssektion');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
